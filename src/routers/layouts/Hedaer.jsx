@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 const HeaderWrapper = styled.div`
   width: 100%;
@@ -25,12 +26,39 @@ const InnerWrapper = styled.div`
   justify-content: center;
 `;
 
-const Header = () => {
+const ActionSpan = styled.span`
+  padding: 5px;
+  margin: 5px;
+  color: ${(props) => props.theme.whiteColor};
+  cursor: pointer;
+  transition: 0.5s;
+
+  &:hover {
+    color: ${(props) => props.theme.pointColor};
+  }
+`;
+
+const Header = ({ history }) => {
+  const moveLinkHandler = (link) => {
+    history.push(link);
+  };
+
   return (
     <HeaderWrapper>
       <InnerWrapper width={`200px`}></InnerWrapper>
-      <InnerWrapper>LOGO</InnerWrapper>
-      <InnerWrapper width={`200px`}>SING IN / UP</InnerWrapper>
+      <InnerWrapper>
+        <ActionSpan onClick={() => moveLinkHandler("/")}>
+          <Link to="/"> LOGO</Link>
+        </ActionSpan>
+      </InnerWrapper>
+      <InnerWrapper width={`200px`}>
+        <ActionSpan onClick={() => moveLinkHandler("/signIn")}>
+          SING IN
+        </ActionSpan>
+        <ActionSpan onClick={() => moveLinkHandler("/signUp")}>
+          SING UP
+        </ActionSpan>
+      </InnerWrapper>
     </HeaderWrapper>
   );
 };
