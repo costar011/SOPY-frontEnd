@@ -21,6 +21,7 @@
     "webpack-dev-server": "^3.10.3"
   },
   "dependencies": {
+    "apollo-boost": "^0.4.9",
     "cross-env": "^7.0.2",
     "dotenv-webpack": "^5.1.0",
     "react": "^17.0.1",
