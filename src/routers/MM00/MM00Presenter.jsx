@@ -2,6 +2,7 @@ import React from "react";
 import { Wrapper, ImageBox } from "../../components/commonComponent";
 import styled from "styled-components";
 import Fade from "react-reveal/Fade";
+import Bounce from "react-reveal/Bounce";
 
 const ViewText = styled.div`
   margin: 6px;
@@ -55,34 +56,38 @@ const MM00Presenter = () => {
         </Fade>
       </Wrapper>
       <Wrapper>
-        <BarWrapper />
+        <Bounce>
+          <BarWrapper />
+        </Bounce>
 
-        <WrapWrapper dr={`row`} margin={`0px 0px 100px 0px`}>
-          <ImageBox
-            width={`320px`}
-            height={`180px`}
-            margin={`5px`}
-            bgImg={`https://images.unsplash.com/photo-1580927752452-89d86da3fa0a?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=80`}
-          />
-          <ImageBox
-            width={`320px`}
-            height={`180px`}
-            margin={`5px`}
-            bgImg={`https://images.unsplash.com/photo-1580927752452-89d86da3fa0a?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=80`}
-          />
-          <ImageBox
-            width={`320px`}
-            height={`180px`}
-            margin={`5px`}
-            bgImg={`https://images.unsplash.com/photo-1580927752452-89d86da3fa0a?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=80`}
-          />
-          <ImageBox
-            width={`320px`}
-            height={`180px`}
-            margin={`5px`}
-            bgImg={`https://images.unsplash.com/photo-1580927752452-89d86da3fa0a?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=80`}
-          />
-        </WrapWrapper>
+        <Fade bottom>
+          <WrapWrapper dr={`row`} margin={`0px 0px 100px 0px`}>
+            <ImageBox
+              width={`320px`}
+              height={`180px`}
+              margin={`5px`}
+              bgImg={`https://images.unsplash.com/photo-1580927752452-89d86da3fa0a?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=80`}
+            />
+            <ImageBox
+              width={`320px`}
+              height={`180px`}
+              margin={`5px`}
+              bgImg={`https://images.unsplash.com/photo-1580927752452-89d86da3fa0a?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=80`}
+            />
+            <ImageBox
+              width={`320px`}
+              height={`180px`}
+              margin={`5px`}
+              bgImg={`https://images.unsplash.com/photo-1580927752452-89d86da3fa0a?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=80`}
+            />
+            <ImageBox
+              width={`320px`}
+              height={`180px`}
+              margin={`5px`}
+              bgImg={`https://images.unsplash.com/photo-1580927752452-89d86da3fa0a?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=80`}
+            />
+          </WrapWrapper>
+        </Fade>
       </Wrapper>
     </Wrapper>
   );
