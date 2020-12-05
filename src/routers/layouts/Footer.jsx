@@ -25,7 +25,7 @@ const FooterAreaContent = styled.div`
   padding: 20px;
 `;
 
-const FooterWtapper = styled.div`
+const FooterWrapper = styled.div`
   width: ${(props) => props.width};
   height: ${(props) => props.height || `100%`};
 `;
@@ -52,11 +52,11 @@ const Footer = () => {
     <FooterArea>
       <FooterAreaTop>이용약관</FooterAreaTop>
       <FooterAreaContent>
-        <FooterWtapper width={`450px`}>
-          <FooterWtapper width={`100%`} height={`50%`}>
+        <FooterWrapper width={`450px`}>
+          <FooterWrapper width={`100%`} height={`50%`}>
             로고들어가야됨
-          </FooterWtapper>
-          <FooterWtapper width={`100%`} height={`50%`}>
+          </FooterWrapper>
+          <FooterWrapper width={`100%`} height={`50%`}>
             <TextBox>
               <Text>사업자정보</Text>
               <Text>: 포립 소프트웨어</Text>
@@ -71,9 +71,9 @@ const Footer = () => {
               <Text>사업장 소재지</Text>
               <Text>: 대전광역시 서구</Text>
             </TextBox>
-          </FooterWtapper>
-        </FooterWtapper>
-        <FooterWtapper width={`100%`}>right</FooterWtapper>
+          </FooterWrapper>
+        </FooterWrapper>
+        <FooterWrapper width={`100%`}>right</FooterWrapper>
       </FooterAreaContent>
     </FooterArea>
   );
