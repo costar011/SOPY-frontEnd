@@ -15,7 +15,7 @@ const ViewText = styled.div`
 
 const BarWrapper = styled.div`
   width: 1350px;
-  height: 45px;
+  height: 35px;
   border-radius: 8px;
   background-color: ${(props) => props.theme.subThemeColor};
   box-shadow: ${(props) => props.theme.boxShadow};
