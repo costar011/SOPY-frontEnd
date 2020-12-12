@@ -44,13 +44,13 @@ const MM00Presenter = ({ videoDatum }) => {
         <Fade right>
           <Wrapper al={`flex-start`} padding={`20px`}>
             <ViewText size={`20px`} weight={`700`} isTitle={true}>
-              민기의 피자토스트 만드는 방법
+              Text 1
             </ViewText>
             <ViewText size={`12px`} weight={`400`} isTitle={true}>
-              민기
+              Text 2
             </ViewText>
             <ViewText size={`13.5px`} weight={`500`} isTitle={true}>
-              만듀만듀만듀만듀만듀
+              Text 3
             </ViewText>
           </Wrapper>
         </Fade>
