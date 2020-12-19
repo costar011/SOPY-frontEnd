@@ -90,7 +90,17 @@ const PostButton = styled.button`
   }
 `;
 
-const MM05Presenter = ({ newName }) => {
+const MM05Presenter = ({
+  newName,
+  newEmail,
+  newMobile,
+  newNickName,
+  newZoneCode,
+  newAddress,
+  newDetailAddress,
+  registUserHandler,
+  searchPostHandelr,
+}) => {
   return (
     <Wrapper>
       <Typist
@@ -113,7 +123,7 @@ const MM05Presenter = ({ newName }) => {
             readOnly={true}
             {...newZoneCode}
           />
-          <PostButton>검색</PostButton>
+          <PostButton onClick={searchPostHandelr}>검색</PostButton>
         </RowWrapper>
         <TextInput
           type="text"
@@ -127,7 +137,7 @@ const MM05Presenter = ({ newName }) => {
           {...newDetailAddress}
         />
 
-        <Button>SIGN UP !</Button>
+        <Button onClick={registUserHandler}>SIGN UP !</Button>
       </Fade>
     </Wrapper>
   );
