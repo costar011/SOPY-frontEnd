@@ -15,7 +15,6 @@ const Wrapper = styled.div`
 
 const RowWrapper = styled.div`
   width: 100%;
-  padding: 40px;
 
   display: flex;
   flex-direction: row;
@@ -123,7 +122,7 @@ const MM05Presenter = ({
             readOnly={true}
             {...newZoneCode}
           />
-          <PostButton onClick={searchPostHandelr}>검색</PostButton>
+          <PostButton onClick={searchPostHandelr}>search</PostButton>
         </RowWrapper>
         <TextInput
           type="text"
