@@ -5,7 +5,7 @@ export const REGIST_USER = gql`
     $name: String!
     $email: String!
     $nickName: String!
-    $moblie: String!
+    $mobile: String!
     $zoneCode: String!
     $address: String!
     $detailAddress: String!

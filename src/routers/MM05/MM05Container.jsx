@@ -30,29 +30,22 @@ const MM05Container = () => {
       alert("이름은 필수 입력 상황입니다.");
       return; /* return을 하면 현재 실행중인 함수를 중단시킴 */
     }
-
-    console.log(newEmail.value);
+    // trim -> 띄어쓰기 없애서 데이터 있는지 파악
 
     if (!newEmail.value || newEmail.value.trim() === "") {
       alert("이메일은 필수 입력 상황입니다.");
       return;
     }
 
-    console.log(newNickName.value);
-
     if (!newNickName.value || newNickName.value.trim() === "") {
       alert("닉네임은 필수 입력 상황입니다.");
       return;
     }
 
-    console.log(newMobile.value);
-
     if (!newMobile.value || newMobile.value.trim() === "") {
       alert("전화번호는 필수 입력 상황입니다.");
       return;
     }
-
-    console.log(newZoneCode.value);
 
     if (!newZoneCode.value || newZoneCode.value.trim() === "") {
       alert("주소는 필수 입력 상황입니다.");
@@ -65,7 +58,7 @@ const MM05Container = () => {
         email: newEmail.value,
         nickName: newNickName.value,
         mobile: newMobile.value,
-        zonecode: newZoneCode.value,
+        zoneCode: newZoneCode.value,
         address: newAddress.value,
         detailAddress: newDetailAddress.value || `-`,
       },
