@@ -1,43 +1,83 @@
 import React from "react";
-import useInput from "../../Hooks/useinput";
 import MM05Presenter from "./MM05Presenter";
+import useInput from "../../Hooks/useInput";
+import { REGIST_USER } from "./MM05Querise";
+import { useMutation } from "react-apollo-hooks";
 
 const MM05Container = () => {
-  ////////   VARIABLE     ////////
+  //////////// VARIABLE  ////////////////////
+  //////////// USE STATE  ///////////////////
 
-  ////////   USE STATE    ////////
-  const newName = useInput("");
   const newEmail = useInput("");
-  const newMobile = useInput("");
+  const newName = useInput("");
   const newNickName = useInput("");
+  const newMobile = useInput("");
   const newZoneCode = useInput("");
   const newAddress = useInput("");
   const newDetailAddress = useInput("");
 
-  ////////   USE REF      ////////
+  //////////// USE REF  /////////////////////
+  //////////// USE CONTEXT  /////////////////
+  ////////////// USE QUERY  /////////////////
+  //////////// USE MUTATION  ////////////////
+  const [registUserMutation] = useMutation(REGIST_USER);
 
-  ////////   USE CONTEXT  ////////
+  ///////////// USE EFFECT  /////////////////
 
-  ////////   USE QUREY    ////////
+  ////////////// HANDLER  //////////////////
+  const registUserHandler = async () => {
+    if (!newName.value || newName.value.trim() === "") {
+      alert("이름은 필수 입력 상황입니다.");
+      return; /* return을 하면 현재 실행중인 함수를 중단시킴 */
+    }
 
-  ////////   USE MUTATION ////////
-
-  ////////   USE EFFECT   ////////
-
-  ////////   USE HANDLER   ////////
-  const registUserHandler = () => {
-    console.log(newName.value);
     console.log(newEmail.value);
-    console.log(newMobile.value);
+
+    if (!newEmail.value || newEmail.value.trim() === "") {
+      alert("이메일은 필수 입력 상황입니다.");
+      return;
+    }
+
     console.log(newNickName.value);
+
+    if (!newNickName.value || newNickName.value.trim() === "") {
+      alert("닉네임은 필수 입력 상황입니다.");
+      return;
+    }
+
+    console.log(newMobile.value);
+
+    if (!newMobile.value || newMobile.value.trim() === "") {
+      alert("전화번호는 필수 입력 상황입니다.");
+      return;
+    }
+
     console.log(newZoneCode.value);
-    console.log(newAddress.value);
-    console.log(newDetailAddress.value);
+
+    if (!newZoneCode.value || newZoneCode.value.trim() === "") {
+      alert("주소는 필수 입력 상황입니다.");
+      return;
+    }
+
+    const { data } = await registUserMutation({
+      variables: {
+        name: newName.value,
+        email: newEmail.value,
+        nickName: newNickName.value,
+        mobile: newMobile.value,
+        zonecode: newZoneCode.value,
+        address: newAddress.value,
+        detailAddress: newDetailAddress.value || `-`,
+      },
+    });
+    console.log(data);
   };
 
-  const searchPostHandelr = () => {
+  const searchPostHandler = () => {
     new daum.Postcode({
       oncomplete: function (data) {
+        newZoneCode.setValue(data.zonecode);
+        newAddress.setValue(data.address);
         // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분입니다.
         // 예제를 참고하여 다양한 활용법을 확인해 보세요.
       },
@@ -46,18 +86,19 @@ const MM05Container = () => {
 
   return (
     <MM05Presenter
-      // useInput
-      newName={newName}
       newEmail={newEmail}
-      newMobile={newMobile}
+      newName={newName}
       newNickName={newNickName}
+      newMobile={newMobile}
       newZoneCode={newZoneCode}
       newAddress={newAddress}
       newDetailAddress={newDetailAddress}
-      // handler
+      //Handler
       registUserHandler={registUserHandler}
-      searchPostHandelr={searchPostHandelr}
+      searchPostHandler={searchPostHandler}
     />
   );
 };
+
 export default MM05Container;
+// export default 는 한번만 실행시킬 수 있다.
