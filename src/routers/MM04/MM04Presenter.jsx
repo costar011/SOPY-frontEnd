@@ -6,7 +6,6 @@ import Fade from "react-reveal/Fade";
 const Wrapper = styled.div`
   width: 100%;
   padding: 40px;
-
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -15,7 +14,6 @@ const Wrapper = styled.div`
 
 const RowWrapper = styled.div`
   width: 100%;
-
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -24,20 +22,18 @@ const RowWrapper = styled.div`
 
 const TextInput = styled.input`
   width: ${(props) => props.width || `450px`};
-  height: 35px;
-  border-radius: 10px;
+  height: 25px;
+  border-radius: ${(props) => props.theme.radius};
   margin: 0px 5px;
-  padding: 0px 10px;
+  padding: 0px 15px;
   outline: none;
   border: 1px solid ${(props) => props.theme.greyColor};
   background: none;
   box-shadow: ${(props) => props.theme.boxShadow};
   transition: 0.5s;
-
   &:hover {
     box-shadow: 5px 5px 5px #0b0b0b;
   }
-
   &:focus {
     box-shadow: 5px 5px 5px #0b0b0b;
   }
@@ -58,9 +54,7 @@ const Button = styled.button`
   background-color: ${(props) => props.theme.checkColor};
   color: ${(props) => props.theme.whiteColor};
   cursor: pointer;
-
   transition: 0.5s;
-
   &:hover {
     background-color: ${(props) => props.theme.whiteColor};
     border: 1px solid ${(props) => props.theme.checkColor};
@@ -78,11 +72,10 @@ const MM04Presenter = ({ inputEmail, loginClickHandler }) => {
       >
         <Title>SIGN IN</Title>
       </Typist>
-
-      <Fade bottom>
+      <Fade>
         <RowWrapper>
-          <TextInput type="text" placeholder={`email...`} {...inputEmail} />
-          <Button onClick={loginClickHandler}>LOG IN !</Button>
+          <TextInput placeholder={`email...`} {...inputEmail} />
+          <Button onClick={loginClickHandler}>LOG IN</Button>
         </RowWrapper>
       </Fade>
     </Wrapper>

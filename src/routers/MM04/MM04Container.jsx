@@ -1,40 +1,42 @@
 import React from "react";
 import MM04Presenter from "./MM04Presenter";
-import useInput from "../../Hooks/useinput";
-import { TRY_LOGIN } from "./MM04Querise";
+import useInput from "../../Hooks/useInput";
+import { TRY_LOGIN } from "./MM04Queries";
 import { useMutation } from "react-apollo-hooks";
 
 const MM04Container = () => {
-  ////////   VARIABLE     ////////
+  ////////// VARIABLE     //////////
 
-  ////////   USE STATE    ////////
-  const inputEmail = useInput(``);
+  ////////// USE SATETE   //////////
+  const inputEmail = useInput("");
 
-  ////////   USE REF      ////////
+  ////////// USE REF      //////////
 
-  ////////   USE CONTEXT  ////////
+  ////////// USE CONTEXT  //////////
 
-  ////////   USE QUREY    ////////
+  ////////// USE QUERY    //////////
 
-  ////////   USE MUTATION ////////
+  ////////// USE MUTATION //////////
   const [tryLoginMutation] = useMutation(TRY_LOGIN);
 
-  ////////   USE EFFECT   ////////
+  ////////// USE EFFECT   //////////
+
   const loginClickHandler = async () => {
+    console.log(inputEmail.value);
+
     const { data } = await tryLoginMutation({
       variables: {
         email: inputEmail.value,
       },
     });
-
-    console.log(data);
   };
 
   return (
     <MM04Presenter
       inputEmail={inputEmail}
       loginClickHandler={loginClickHandler}
-    />
+    ></MM04Presenter>
   );
 };
+
 export default MM04Container;
