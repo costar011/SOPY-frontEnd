@@ -1,7 +1,7 @@
 import React from "react";
 import MM05Presenter from "./MM05Presenter";
 import useInput from "../../Hooks/useInput";
-import { REGIST_USER } from "./MM05Querise";
+import { REGIST_USER } from "./MM05Queries";
 import { useMutation } from "react-apollo-hooks";
 
 const MM05Container = () => {
@@ -20,27 +20,34 @@ const MM05Container = () => {
   //////////// USE CONTEXT  /////////////////
   ////////////// USE QUERY  /////////////////
   //////////// USE MUTATION  ////////////////
+
   const [registUserMutation] = useMutation(REGIST_USER);
 
   ///////////// USE EFFECT  /////////////////
 
   ////////////// HANDLER  //////////////////
+
   const registUserHandler = async () => {
     if (!newName.value || newName.value.trim() === "") {
       alert("이름은 필수 입력 상황입니다.");
       return; /* return을 하면 현재 실행중인 함수를 중단시킴 */
     }
-    // trim -> 띄어쓰기 없애서 데이터 있는지 파악
+
+    console.log(newEmail.value);
 
     if (!newEmail.value || newEmail.value.trim() === "") {
       alert("이메일은 필수 입력 상황입니다.");
       return;
     }
 
+    console.log(newNickName.value);
+
     if (!newNickName.value || newNickName.value.trim() === "") {
       alert("닉네임은 필수 입력 상황입니다.");
       return;
     }
+
+    console.log(newMobile.value);
 
     if (!newMobile.value || newMobile.value.trim() === "") {
       alert("전화번호는 필수 입력 상황입니다.");
@@ -63,6 +70,7 @@ const MM05Container = () => {
         detailAddress: newDetailAddress.value || `-`,
       },
     });
+
     console.log(data);
   };
 
@@ -94,4 +102,3 @@ const MM05Container = () => {
 };
 
 export default MM05Container;
-// export default 는 한번만 실행시킬 수 있다.
