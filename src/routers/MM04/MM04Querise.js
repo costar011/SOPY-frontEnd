@@ -5,3 +5,9 @@ export const TRY_LOGIN = gql`
     tryLogin(email: $email)
   }
 `;
+
+export const CHECK_SECRET_CODE = gql`
+  mutation checkSecretCode($email: String!, $code: String!) {
+    checkSecretCode(email: $email, code: $code)
+  }
+`;
