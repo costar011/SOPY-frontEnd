@@ -46,9 +46,12 @@ const MM04Container = ({ history }) => {
       },
     });
 
-    if (data.checkSecretCode) {
+    if (data.checkSecretCode.result) {
       alert("로그인 성공 !!");
+      sessionStorage.setItem("JDJE!@dkfsjns", data.checkSecretCode.objectId);
       history.push("/");
+
+      window.location.reload(); // 새로고침하여 1차적으로 버그 고침
     } else {
       alert("인증코드가 잘못되었습니다.");
     }
