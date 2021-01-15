@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useQuery } from "react-apollo-hooks";
 import MM00Presenter from "./MM00Presenter";
-import { GET_ALL_VIDEOS } from "./MM00Querise";
+import { GET_ALL_VIDEOS } from "./MM00Queries";
 import storageRef from "../../firebase";
 
 const MM00Container = () => {

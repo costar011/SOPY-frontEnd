@@ -1,7 +1,7 @@
 import React from "react";
 import MM05Presenter from "./MM05Presenter";
 import useInput from "../../Hooks/useInput";
-import { REGIST_USER } from "./MM05Querise";
+import { REGIST_USER } from "./MM05Queries";
 import { useMutation } from "react-apollo-hooks";
 
 const MM05Container = () => {

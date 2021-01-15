@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import MM04Presenter from "./MM04Presenter";
 import useInput from "../../hooks/useInput";
-import { TRY_LOGIN, CHECK_SECRET_CODE } from "./MM04Querise";
+import { TRY_LOGIN, CHECK_SECRET_CODE } from "./MM04Queries";
 import { useMutation } from "react-apollo-hooks";
 
 const MM04Container = ({ history }) => {
