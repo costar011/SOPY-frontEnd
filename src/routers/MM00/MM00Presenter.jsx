@@ -1,8 +1,13 @@
 import React from "react";
-import { Wrapper, ImageBox } from "../../components/commonComponent";
+import {
+  Wrapper,
+  ImageBox,
+  CommonBtn,
+} from "../../components/commonComponents";
 import styled from "styled-components";
 import Fade from "react-reveal/Fade";
 import Bounce from "react-reveal/Bounce";
+import { Link } from "react-router-dom";
 
 const ViewText = styled.div`
   margin: 6px;
@@ -47,7 +52,7 @@ const FileLabel = styled.label`
 const Image = styled.img`
   width: 400px;
   height: 400px;
-  border: 2px solid #777;
+  border: 1px solid #777;
   margin: 10px;
   object-fit: cover;
 `;
@@ -69,13 +74,13 @@ const MM00Presenter = ({ videoDatum, fileChangeHandler, imagePath }) => {
         <Fade right>
           <Wrapper al={`flex-start`} padding={`20px`}>
             <ViewText size={`20px`} weight={`700`} isTitle={true}>
-              Text 1
+              경민이의 계란빵 만드는 방법
             </ViewText>
             <ViewText size={`12px`} weight={`400`} isTitle={true}>
-              Text 2
+              안뇽
             </ViewText>
             <ViewText size={`13.5px`} weight={`500`} isTitle={true}>
-              Text 3
+              뇽안뇽안
             </ViewText>
           </Wrapper>
         </Fade>
@@ -110,10 +115,17 @@ const MM00Presenter = ({ videoDatum, fileChangeHandler, imagePath }) => {
           </WrapWrapper>
         </Fade>
       </Wrapper>
-      {/*flie uploadtest */}
+
+      {/* FILE UPLOAD TEST */}
       <Image src={imagePath} />
       <FileInput type="file" id="file-js" onChange={fileChangeHandler} />
       <FileLabel htmlFor="file-js">파일선택</FileLabel>
+
+      <Wrapper margin={`50px 0px`}>
+        <Link to="/video/upload">
+          <CommonBtn isCreate={true}>동영상 업로드</CommonBtn>
+        </Link>
+      </Wrapper>
     </Wrapper>
   );
 };
