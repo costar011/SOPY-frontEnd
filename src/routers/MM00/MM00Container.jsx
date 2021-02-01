@@ -5,28 +5,27 @@ import { GET_ALL_VIDEOS } from "./MM00Queries";
 import storageRef from "../../firebase";
 
 const MM00Container = () => {
-  ////////   VARIABLE     ////////
+  ////////// VARIABLE     //////////
 
-  ////////   USE STATE    ////////
+  ////////// USE SATETE   //////////
   const [imagePath, setImagePath] = useState(``);
 
-  ////////   USE REF      ////////
+  ////////// USE REF      //////////
 
-  ////////   USE CONTEXT  ////////
+  ////////// USE CONTEXT  //////////
 
-  ////////   USE QUREY    ////////
-  /// { data, loading, refetch }
-  // const {
-  //   data: videoDatum,
-  //   loading: videoLoding,
-  //   refetch: videoRefetch,
-  // } = useQuery(GET_ALL_VIDEOS);
+  ////////// USE QUERY    //////////
 
-  // console.log(videoDatum && videoDatum.getAllVideos);
+  const {
+    data: videoDatum,
+    loading: videoLoading,
+    refetch: videoRefetch,
+  } = useQuery(GET_ALL_VIDEOS);
+  //const { data, loading, refetch } = useQuery(가져온 query 이름);
 
-  ////////   USE MUTATION ////////
+  ////////// USE MUTATION //////////
 
-  ////////   USE EFFECT   ////////
+  ////////// USE EFFECT   //////////
 
   const fileChangeHandler = async (e) => {
     const originFile = e.target.files[0];
@@ -52,19 +51,22 @@ const MM00Container = () => {
       const storage = storageRef.child(
         `SOPY/uploads/thumbnail/${uploadFileName}`
       );
+
       await storage.put(originFile);
       const url = await storage.getDownloadURL();
 
       setImagePath(url);
+      console.log(url);
     } catch (e) {}
   };
 
   return (
     <MM00Presenter
-      // videoDatum={videoDatum && videoDatum.getAllvideos}
-      fileChangeHandler={fileChangeHandler}
+      videoDatum={videoDatum && videoDatum.getAllVideos}
       imagePath={imagePath}
+      fileChangeHandler={fileChangeHandler}
     />
   );
 };
+
 export default MM00Container;

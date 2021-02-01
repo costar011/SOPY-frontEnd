@@ -74,13 +74,13 @@ const MM00Presenter = ({ videoDatum, fileChangeHandler, imagePath }) => {
         <Fade right>
           <Wrapper al={`flex-start`} padding={`20px`}>
             <ViewText size={`20px`} weight={`700`} isTitle={true}>
-              경민이의 계란빵 만드는 방법
+              Test1
             </ViewText>
             <ViewText size={`12px`} weight={`400`} isTitle={true}>
-              안뇽
+              Test2
             </ViewText>
             <ViewText size={`13.5px`} weight={`500`} isTitle={true}>
-              뇽안뇽안
+              Test3
             </ViewText>
           </Wrapper>
         </Fade>
@@ -122,9 +122,7 @@ const MM00Presenter = ({ videoDatum, fileChangeHandler, imagePath }) => {
       <FileLabel htmlFor="file-js">파일선택</FileLabel>
 
       <Wrapper margin={`50px 0px`}>
-        <Link to="/video/upload">
-          <CommonBtn isCreate={true}>동영상 업로드</CommonBtn>
-        </Link>
+        <Link to="/video/upload"></Link>
       </Wrapper>
     </Wrapper>
   );
