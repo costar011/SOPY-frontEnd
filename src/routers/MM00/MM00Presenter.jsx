@@ -122,7 +122,9 @@ const MM00Presenter = ({ videoDatum, fileChangeHandler, imagePath }) => {
       <FileLabel htmlFor="file-js">파일선택</FileLabel>
 
       <Wrapper margin={`50px 0px`}>
-        <Link to="/video/upload"></Link>
+        <Link to="/video/upload">
+          <CommonBtn isCreate={true}>동영상 업로드</CommonBtn>
+        </Link>
       </Wrapper>
     </Wrapper>
   );
