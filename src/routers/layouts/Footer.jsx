@@ -11,7 +11,7 @@ const FooterArea = styled.footer`
 const FooterAreaTop = styled.div`
   width: 100%;
   height: 50px;
-  background-color: ${(props) => props.theme.greyColor};
+  background-color: ${(props) => props.theme.darkgrayColor};
   color: ${(props) => props.theme.whiteColor};
 `;
 
@@ -32,16 +32,18 @@ const FooterWrapper = styled.div`
 
 const TextBox = styled.div`
   width: 100%;
-  height: 5px;
+  padding: 5px;
   margin: 10px;
-  padding: 20px;
 
+  display: flex;
+  flex-direction: row;
   align-items: center;
   justify-content: flex-start;
   transition: 0.4s;
 
   &:hover {
     font-weight: 700;
+    cursor: pointer;
   }
 `;
 
@@ -54,26 +56,24 @@ const Footer = () => {
       <FooterAreaContent>
         <FooterWrapper width={`450px`}>
           <FooterWrapper width={`100%`} height={`50%`}>
-            로고들어가야됨
+            LOGO가 들어갈 자리입니다.
           </FooterWrapper>
           <FooterWrapper width={`100%`} height={`50%`}>
             <TextBox>
-              <Text>사업자정보</Text>
-              <Text>: 포립 소프트웨어</Text>
+              <Text>사업자 정보</Text>
+              <Text> : 포립 소프트웨어</Text>
             </TextBox>
-
             <TextBox>
-              <Text>사업자번호</Text>
-              <Text>: 574-31-00766</Text>
+              <Text>사업자 번호</Text>
+              <Text> : 574-31-00766</Text>
             </TextBox>
-
             <TextBox>
               <Text>사업장 소재지</Text>
-              <Text>: 대전광역시 서구</Text>
+              <Text> : 대전광역시 서구</Text>
             </TextBox>
           </FooterWrapper>
         </FooterWrapper>
-        <FooterWrapper width={`100%`}>right</FooterWrapper>
+        <FooterWrapper width={`100%`}>RIGHT</FooterWrapper>
       </FooterAreaContent>
     </FooterArea>
   );

@@ -74,13 +74,13 @@ const MM00Presenter = ({ videoDatum, fileChangeHandler, imagePath }) => {
         <Fade right>
           <Wrapper al={`flex-start`} padding={`20px`}>
             <ViewText size={`20px`} weight={`700`} isTitle={true}>
-              Test1
+              경민이의 계란빵 만드는 방법
             </ViewText>
             <ViewText size={`12px`} weight={`400`} isTitle={true}>
-              Test2
+              안뇽
             </ViewText>
             <ViewText size={`13.5px`} weight={`500`} isTitle={true}>
-              Test3
+              뇽안뇽안
             </ViewText>
           </Wrapper>
         </Fade>

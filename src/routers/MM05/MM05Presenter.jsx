@@ -6,6 +6,7 @@ import Fade from "react-reveal/Fade";
 const Wrapper = styled.div`
   width: 100%;
   padding: 40px;
+
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -14,6 +15,7 @@ const Wrapper = styled.div`
 
 const RowWrapper = styled.div`
   width: 100%;
+
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -31,9 +33,11 @@ const TextInput = styled.input`
   background: none;
   box-shadow: ${(props) => props.theme.boxShadow};
   transition: 0.5s;
+
   &:hover {
     box-shadow: 5px 5px 5px #0b0b0b;
   }
+
   &:focus {
     box-shadow: 5px 5px 5px #0b0b0b;
   }
@@ -55,7 +59,9 @@ const Button = styled.button`
   color: ${(props) => props.theme.whiteColor};
   cursor: pointer;
   margin: 20px 0px 50px 0px;
+
   transition: 0.5s;
+
   &:hover {
     background-color: ${(props) => props.theme.whiteColor};
     border: 1px solid ${(props) => props.theme.checkColor};
@@ -73,7 +79,9 @@ const PostButton = styled.button`
   color: ${(props) => props.theme.whiteColor};
   cursor: pointer;
   margin-left: 10px;
+
   transition: 0.5s;
+
   &:hover {
     background-color: ${(props) => props.theme.whiteColor};
     border: 1px solid ${(props) => props.theme.pointColor};

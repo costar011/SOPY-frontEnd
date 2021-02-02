@@ -54,11 +54,12 @@ export const CommonBtn = styled.button`
   box-shadow: ${(props) => props.theme.boxShadow};
 
   transition: 0.5s;
-  cursor: pointer;
 
   &:hover {
     background-color: ${(props) => props.theme.whiteColor};
     border: 1px solid ${(props) => props.theme.mainThemeColor};
     color: ${(props) => props.theme.mainThemeColor};
+
+    cursor: pointer;
   }
 `;

@@ -1,9 +1,8 @@
 import { gql } from "apollo-boost";
 
-// 왜 대문자로 하느냐 ? 상수임
 export const GET_ALL_VIDEOS = gql`
-  query getAllvideos {
-    getAllvideos {
+  query getAllVideos {
+    getAllVideos {
       _id
       title
       description
@@ -11,3 +10,4 @@ export const GET_ALL_VIDEOS = gql`
     }
   }
 `;
+//상수(변하지 않는 수)라 대문자로 표기할 것임
