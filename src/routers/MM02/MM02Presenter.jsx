@@ -51,6 +51,7 @@ const FileInput = styled.input`
 const FileLabel = styled.label`
   width: 120px;
   height: 30px;
+  margin-top: 25px;
 
   line-height: 25px;
   background-color: ${(props) => props.theme.checkColor};
