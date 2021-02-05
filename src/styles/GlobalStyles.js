@@ -12,4 +12,5 @@ export default createGlobalStyle`
         text-decoration: none;
         color: white;
     }
+    
 `;

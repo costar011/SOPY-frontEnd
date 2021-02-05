@@ -6,66 +6,80 @@ import { CommonBtn } from "../../components/commonComponents";
 const Wrapper = styled.div`
   width: 100%;
   padding: 40px;
-
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-
   flex-wrap: wrap;
-`;
-
-const Title = styled.h2`
-  font-size: 25px;
-  font-weight: 600;
-  margin: 0px 0px 40px 0px;
-`;
-
-const Text = styled.div`
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-`;
-
-const TextInput = styled.input`
-  width: 600px;
-  height: 30px;
-  border-radius: 5px;
-  outline: none;
-  border: 1px solid #ccc;
-  margin: 15px 0px;
-  transition: 0.5s;
-  padding: 0px 10px;
-
-  &:focus {
-    box-shadow: ${(props) => props.theme.boxShadow};
-  }
 `;
 
 const FileInput = styled.input`
   display: none;
 `;
 
-const FileLabel = styled.label`
-  width: 120px;
-  height: 30px;
-  margin-top: 25px;
+const UploadImg = styled.img`
+  width: 400px;
+  height: 400px;
 
-  line-height: 25px;
-  background-color: ${(props) => props.theme.checkColor};
+  border: 1px solid #777;
+  margin: 10px;
+  object-fit: cover;
 
-  color: #fff;
-
-  box-shadow: ${(props) => props.theme.boxShadow};
-
-  border-radius: ${(props) => props.theme.radius};
-  text-align: center;
-  cursor: pointer;
+  &:before {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    border-radius: 5px;
+  }
 `;
 
-const MM02Presenter = (fileChangeHandler) => {
+const TextInput = styled.input`
+  width: ${(props) => props.width || `450px`};
+  height: ${(props) => props.height || `40px`};
+
+  border-radius: 10px;
+  margin: 10px 0px 20px 40px;
+
+  padding: 15px;
+
+  outline: none;
+  border: 1px solid ${(props) => props.theme.greyColor};
+  background: none;
+  box-shadow: ${(props) => props.theme.boxShadow};
+  transition: 0.5s;
+
+  &:hover {
+    box-shadow: 5px 5px 5px #777;
+  }
+`;
+
+const Title = styled.h2`
+  font-size: 30px;
+  font-weight: 600;
+  margin-bottom: 35px;
+`;
+
+const UnderWrapper = styled.div`
+  width: 85%;
+
+  display: flex;
+  flex-direction: row;
+  margin: 20px 0px 0px 50px;
+`;
+
+const RightWrapper = styled.div`
+  width: 35%;
+`;
+
+const LeftWrapper = styled.div`
+  width: 50%;
+
+  display: flex;
+  flex-direction: column;
+`;
+
+const MM02Presenter = ({ fileChangeHandler, imagePath }) => {
   return (
     <Wrapper>
       <Typist
@@ -76,14 +90,18 @@ const MM02Presenter = (fileChangeHandler) => {
         <Title>Upload Video</Title>
       </Typist>
 
-      <Text>
-        <TextInput placeholder="title" />
-        <TextInput placeholder="description" />
-      </Text>
+      <UnderWrapper>
+        <LeftWrapper>
+          <TextInput placeholder="title" />
+          <TextInput placeholder="description" height="340px" />
+        </LeftWrapper>
 
-      <CommonBtn isCreate={true}>UPLOAD</CommonBtn>
-      <FileInput type="file" id="file-js" onChange={fileChangeHandler} />
-      <FileLabel htmlFor="file-js">파일선택</FileLabel>
+        <RightWrapper>
+          <UploadImg src={imagePath} />
+          <FileInput type="file" id="file-js" onChange={fileChangeHandler} />
+          <CommonBtn htmlFor="file-js">파일선택</CommonBtn>
+        </RightWrapper>
+      </UnderWrapper>
     </Wrapper>
   );
 };
