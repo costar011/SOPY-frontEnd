@@ -1,27 +1,27 @@
 import React, { useState } from "react";
-import { useQuery } from "react-apollo-hooks";
+import { useMutation } from "react-apollo-hooks";
 import MM02Presenter from "./MM02Presenter";
-import { GET_ALL_VIDEOS } from "./MM02Queries";
 import storageRef from "../../firebase";
+import useInput from "../../Hooks/useInput";
+import { REGIST_VIDEO } from "./MM02Queries";
 
-const MM02Container = () => {
+const MM02Container = ({ history }) => {
   //////////// VARIABLE  ////////////////////
 
   //////////// USE STATE  ///////////////////
   const [imagePath, setImagePath] = useState(``);
+
+  const newTitle = useInput(``);
+  const newDesc = useInput(``);
 
   //////////// USE REF  /////////////////////
 
   //////////// USE CONTEXT  /////////////////
 
   ////////////// USE QUERY  /////////////////
-  const {
-    data: videoDatum,
-    loading: videoLoading,
-    refetch: videoRefetch,
-  } = useQuery(GET_ALL_VIDEOS);
 
   //////////// USE MUTATION  ////////////////
+  const [registerVideoMutation] = useMutation(REGIST_VIDEO);
 
   ///////////// USE EFFECT  /////////////////
   const fileChangeHandler = async (e) => {
@@ -55,15 +55,34 @@ const MM02Container = () => {
 
       setImagePath(url);
     } catch (e) {
-      /*여기는 프론트이므로 콘솔로그 에러는 찍으면 사용자에게 에러가 나오므로 적지 않아야 함! */
+      /*여기는 프론트이므로 콘솔로그 에러는 찍으면 사용자에게 에러가 나오므로 적지 말아야 함! */
+    }
+  };
+
+  const registerHandler = async () => {
+    const { data } = await registerVideoMutation({
+      variables: {
+        path: imagePath,
+        title: newTitle.value,
+        desc: newDesc.value,
+      },
+    });
+
+    if (data.registerVideo) {
+      alert("upload");
+      history.push("/");
+    } else {
+      alert("upload Fail");
     }
   };
 
   return (
     <MM02Presenter
-      videoDatum={videoDatum && videoDatum.getAllVideos}
       fileChangeHandler={fileChangeHandler}
       imagePath={imagePath}
+      newTitle={newTitle}
+      newDesc={newDesc}
+      registerHandler={registerHandler}
     />
   );
 };

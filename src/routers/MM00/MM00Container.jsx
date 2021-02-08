@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useQuery } from "react-apollo-hooks";
 import MM00Presenter from "./MM00Presenter";
 import { GET_ALL_VIDEOS } from "./MM00Queries";
@@ -24,6 +24,11 @@ const MM00Container = () => {
   //////////// USE MUTATION  ////////////////
 
   ///////////// USE EFFECT  /////////////////
+
+  useEffect(() => {
+    videoRefetch();
+  }, []);
+
   const fileChangeHandler = async (e) => {
     console.log(e.target.files[0]);
     const originFile = e.target.files[0];

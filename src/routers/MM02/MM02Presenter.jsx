@@ -6,30 +6,96 @@ import { CommonBtn } from "../../components/commonComponents";
 const Wrapper = styled.div`
   width: 100%;
   padding: 40px;
+
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+
   flex-wrap: wrap;
+`;
+
+const RowWrapper = styled.div`
+  width: 100%;
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+`;
+
+const LeftWrapper = styled.div`
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+`;
+
+const RightWrapper = styled.div`
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+`;
+
+const RightupWrapper = styled.div`
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+`;
+
+const RightdownWrapper = styled.div`
+  width: 65%;
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: center;
 `;
 
 const FileInput = styled.input`
   display: none;
 `;
 
-const UploadImg = styled.img`
-  width: 400px;
-  height: 400px;
+const FileLabel = styled.label`
+  /* width: 120px;
+  height: 25px;
+  line-height: 25px;
+  background-color: ${(props) => props.theme.checkColor};
+  color: #fff;
+  box-shadow: ${(props) => props.theme.boxShadow};
+  margin: 5px;
+  border-radius: ${(props) => props.theme.radius};
+  text-align: center; */
+  cursor: pointer;
+`;
 
-  border: 1px solid #777;
-  margin: 10px;
+const Image = styled.img`
+  width: 450px;
+  height: 450px;
+  margin: 0px 10px;
+  border-radius: 5px;
   object-fit: cover;
 
   &:before {
+    content: "Choose the Video";
     display: flex;
     align-items: center;
     justify-content: center;
+
     position: absolute;
+    width: 450px;
+    height: 450px;
+    background-color: #e7e7e7;
+    border: 2px dotted #777;
+    color: #666666;
     border-radius: 5px;
   }
 `;
@@ -37,12 +103,9 @@ const UploadImg = styled.img`
 const TextInput = styled.input`
   width: ${(props) => props.width || `450px`};
   height: ${(props) => props.height || `40px`};
-
   border-radius: 10px;
-  margin: 10px 0px 20px 40px;
-
-  padding: 15px;
-
+  margin-bottom: 10px;
+  padding: 0px 10px;
   outline: none;
   border: 1px solid ${(props) => props.theme.greyColor};
   background: none;
@@ -50,36 +113,47 @@ const TextInput = styled.input`
   transition: 0.5s;
 
   &:hover {
-    box-shadow: 5px 5px 5px #777;
+    box-shadow: 5px 5px 5px #0b0b0b;
+  }
+
+  &:focus {
+    box-shadow: 5px 5px 5px #0b0b0b;
   }
 `;
 
 const Title = styled.h2`
-  font-size: 30px;
-  font-weight: 600;
-  margin-bottom: 35px;
+  font-size: 26px;
+  font-weight: 700;
+  margin: 0px 0px 40px 0px;
 `;
 
-const UnderWrapper = styled.div`
-  width: 85%;
+const Button = styled.button`
+  width: 80px;
+  height: 30px;
+  border-radius: ${(props) => props.theme.radius};
+  outline: none;
+  border: none;
+  background-color: ${(props) => props.theme.checkColor};
+  color: ${(props) => props.theme.whiteColor};
+  cursor: pointer;
 
-  display: flex;
-  flex-direction: row;
-  margin: 20px 0px 0px 50px;
+  transition: 0.5s;
+
+  &:hover {
+    background-color: ${(props) => props.theme.whiteColor};
+    border: 1px solid ${(props) => props.theme.checkColor};
+    color: ${(props) => props.theme.checkColor};
+  }
 `;
 
-const RightWrapper = styled.div`
-  width: 35%;
-`;
-
-const LeftWrapper = styled.div`
-  width: 50%;
-
-  display: flex;
-  flex-direction: column;
-`;
-
-const MM02Presenter = ({ fileChangeHandler, imagePath }) => {
+const MM02Presenter = ({
+  videoDatum,
+  fileChangeHandler,
+  imagePath,
+  newTitle,
+  newDesc,
+  registerHandler,
+}) => {
   return (
     <Wrapper>
       <Typist
@@ -89,19 +163,30 @@ const MM02Presenter = ({ fileChangeHandler, imagePath }) => {
       >
         <Title>Upload Video</Title>
       </Typist>
-
-      <UnderWrapper>
+      <RowWrapper>
         <LeftWrapper>
-          <TextInput placeholder="title" />
-          <TextInput placeholder="description" height="340px" />
+          <FileLabel htmlFor="file-js">
+            <Image src={imagePath} />
+          </FileLabel>
+          <FileInput
+            type="file"
+            id="file-js"
+            onChange={fileChangeHandler}
+            accept=".png, .jpg, .jpeg"
+          />
         </LeftWrapper>
-
         <RightWrapper>
-          <UploadImg src={imagePath} />
-          <FileInput type="file" id="file-js" onChange={fileChangeHandler} />
-          <CommonBtn htmlFor="file-js">파일선택</CommonBtn>
+          <RightupWrapper>
+            <TextInput placeholder="title" {...newTitle} />
+            <TextInput placeholder="description" height="350px" {...newDesc} />
+          </RightupWrapper>
+          <RightdownWrapper>
+            <CommonBtn isCreate={true} onClick={registerHandler}>
+              저장하기
+            </CommonBtn>
+          </RightdownWrapper>
         </RightWrapper>
-      </UnderWrapper>
+      </RowWrapper>
     </Wrapper>
   );
 };
