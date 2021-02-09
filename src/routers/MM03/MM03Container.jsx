@@ -43,7 +43,10 @@ const MM03Container = ({ match }) => {
   //////////// USE MUTATION  ////////////////
 
   ///////////// USE EFFECT  /////////////////
-  const originFile = e.target.files[0];
+  const fileChangeHandler = async (e) => {
+    console.log(e.target.files[0]);
+
+    const originFile = e.target.files[0];
     const originFileName = e.target.files[0].name;
 
     console.log(originFile);
@@ -75,6 +78,24 @@ const MM03Container = ({ match }) => {
     } catch (e) {
       /*여기는 프론트이므로 콘솔로그 에러는 찍으면 사용자에게 에러가 나오므로 적지 말아야 함! */
     }
+  };
+
+  const registerHandler = async () => {
+    const { data } = await registerVideoMutation({
+      variables: {
+        path: imagePath,
+        title: newTitle.value,
+        desc: newDesc.value,
+      },
+    });
+
+    if (data.registerVideo) {
+      alert("upload");
+      history.push("/");
+    } else {
+      alert("upload Fail");
+    }
+  };
 
   return (
     <MM03Presenter
@@ -82,6 +103,7 @@ const MM03Container = ({ match }) => {
       editTitle={editTitle}
       editDesc={editDesc}
       fileChangeHandler={fileChangeHandler}
+      registerHandler={registerHandler}
     />
   );
 };
