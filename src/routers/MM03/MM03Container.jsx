@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import { useQuery } from "react-apollo-hooks";
+import { useQuery, useMutation } from "react-apollo-hooks";
 import useInput from "../../Hooks/useInput";
 import MM03Presenter from "./MM03Presenter";
-import { GET_VIDEO_ONE } from "./MM03Queries";
+import { GET_VIDEO_ONE, UPDATE_VIDEO_ONE } from "./MM03Queries";
 
-const MM03Container = ({ match }) => {
+const MM03Container = ({ match, history }) => {
   //////////// VARIABLE  ////////////////////
   const videoId = match.params.id;
 
@@ -16,6 +16,7 @@ const MM03Container = ({ match }) => {
   const editDesc = useInput(``);
 
   const [dataFlag, setDataFlag] = useState(true);
+  const [imagePath] = useState(``);
 
   //////////// USE REF  /////////////////////
 
@@ -40,7 +41,9 @@ const MM03Container = ({ match }) => {
       setDataFlag(false);
     }
   }
+
   //////////// USE MUTATION  ////////////////
+  const [updateVideoMutation] = useMutation(UPDATE_VIDEO_ONE);
 
   ///////////// USE EFFECT  /////////////////
   const fileChangeHandler = async (e) => {
@@ -80,20 +83,21 @@ const MM03Container = ({ match }) => {
     }
   };
 
-  const registerHandler = async () => {
-    const { data } = await registerVideoMutation({
+  const updateHandler = async () => {
+    const { data } = await updateVideoMutation({
       variables: {
+        id: videoId,
         path: imagePath,
-        title: newTitle.value,
-        desc: newDesc.value,
+        title: editTitle.value,
+        desc: editDesc.value,
       },
     });
 
-    if (data.registerVideo) {
-      alert("upload");
+    if (data.updateVideoOne) {
+      alert("update");
       history.push("/");
     } else {
-      alert("upload Fail");
+      alert("update Fail");
     }
   };
 
@@ -102,8 +106,9 @@ const MM03Container = ({ match }) => {
       editThumbnail={editThumbnail}
       editTitle={editTitle}
       editDesc={editDesc}
+      imagePath={imagePath}
       fileChangeHandler={fileChangeHandler}
-      registerHandler={registerHandler}
+      updateHandler={updateHandler}
     />
   );
 };

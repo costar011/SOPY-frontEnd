@@ -127,7 +127,12 @@ const Title = styled.h2`
   margin: 0px 0px 40px 0px;
 `;
 
-const MM03Presenter = ({ editThumbnail, editTitle, editDesc }) => {
+const MM03Presenter = ({
+  editThumbnail,
+  editTitle,
+  editDesc,
+  updateHandler,
+}) => {
   return (
     <Wrapper>
       <Typist
@@ -152,7 +157,9 @@ const MM03Presenter = ({ editThumbnail, editTitle, editDesc }) => {
           </RightupWrapper>
 
           <RightdownWrapper>
-            <CommonBtn isUpdate={true}>수정하기</CommonBtn>
+            <CommonBtn onClick={updateHandler} isUpdate={true}>
+              수정하기
+            </CommonBtn>
           </RightdownWrapper>
         </RightWrapper>
       </RowWrapper>

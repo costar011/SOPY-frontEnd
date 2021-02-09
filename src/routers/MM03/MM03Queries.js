@@ -10,3 +10,14 @@ export const GET_VIDEO_ONE = gql`
     }
   }
 `;
+
+export const UPDATE_VIDEO_ONE = gql`
+  mutation updateVideoOne(
+    $id: String!
+    $path: String!
+    $title: String!
+    $desc: String!
+  ) {
+    updateVideoOne(id: $id, path: $path, title: $title, desc: $desc)
+  }
+`;
