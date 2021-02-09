@@ -1,46 +1,44 @@
 import React, { useEffect, useState } from "react";
-import { useQuery } from "react-apollo-hooks";
+import { useQuery, useMutation } from "react-apollo-hooks";
 import MM00Presenter from "./MM00Presenter";
-import { GET_ALL_VIDEOS } from "./MM00Queries";
+import { DELETE_VIDEO, GET_ALL_VIDEOS } from "./MM00Queries";
 import storageRef from "../../firebase";
 
-const MM00Container = () => {
-  //////////// VARIABLE  ////////////////////
+const MM00Container = ({ history }) => {
+  ////////// VARIABLE     ////////
 
-  //////////// USE STATE  ///////////////////
+  ////////// USE STATE    ////////
   const [imagePath, setImagePath] = useState(``);
 
-  //////////// USE REF  /////////////////////
+  ////////// USE REF      ////////
 
-  //////////// USE CONTEXT  /////////////////
+  ////////// USE CONTEXT  ////////
 
-  ////////////// USE QUERY  /////////////////
+  ////////// USE QUERY    ////////
   const {
     data: videoDatum,
     loading: videoLoading,
     refetch: videoRefetch,
   } = useQuery(GET_ALL_VIDEOS);
 
-  //////////// USE MUTATION  ////////////////
+  ////////// USE MUTATION ////////
 
-  ///////////// USE EFFECT  /////////////////
+  const [deleteVideoMutation] = useMutation(DELETE_VIDEO);
 
+  ////////// USE EFFECT   ////////
   useEffect(() => {
     videoRefetch();
   }, []);
 
   const fileChangeHandler = async (e) => {
-    console.log(e.target.files[0]);
     const originFile = e.target.files[0];
     const originFileName = e.target.files[0].name;
-    console.log(originFile);
-    console.log(originFileName);
 
     const D = new Date();
+
     const year = D.getFullYear() + "";
     const month = D.getMonth() + 1 + "";
     const date = D.getDate() + "";
-    /* date : 날짜 day : 요일 */
     const hour = D.getHours() + "";
     const min = D.getMinutes() + "";
     const sec = D.getSeconds() + "";
@@ -55,13 +53,29 @@ const MM00Container = () => {
       );
 
       await storage.put(originFile);
-
       const url = await storage.getDownloadURL();
 
       setImagePath(url);
-    } catch (e) {
-      /*여기는 프론트이므로 콘솔로그 에러는 찍으면 사용자에게 에러가 나오므로 적지 않아야 함! */
+    } catch (e) {}
+  };
+
+  const videoDeleteHandler = async (id) => {
+    const { data } = await deleteVideoMutation({
+      variables: {
+        id,
+      },
+    });
+
+    if (data.deleteVideo) {
+      alert("비디오가 삭제됨");
+      videoRefetch();
+    } else {
+      alert("비디오 삭제 실패함");
     }
+  };
+
+  const updateHandler = (id) => {
+    history.push(`/video/edit/${id}`);
   };
 
   return (
@@ -69,6 +83,8 @@ const MM00Container = () => {
       videoDatum={videoDatum && videoDatum.getAllVideos}
       fileChangeHandler={fileChangeHandler}
       imagePath={imagePath}
+      videoDeleteHandler={videoDeleteHandler}
+      updateHandler={updateHandler}
     />
   );
 };

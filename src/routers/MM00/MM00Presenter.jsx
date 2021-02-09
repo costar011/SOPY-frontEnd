@@ -57,7 +57,29 @@ const Image = styled.img`
   object-fit: cover;
 `;
 
-const MM00Presenter = ({ videoDatum, fileChangeHandler, imagePath }) => {
+const RelWrapper = styled(Wrapper)`
+  position: relative;
+`;
+
+const AbImageBox = styled(ImageBox)`
+  position: absolute;
+  top: 0;
+  left: 0;
+`;
+
+const AbWrapper = styled(Wrapper)`
+  position: absolute;
+  top: 2px;
+  right: 2px;
+`;
+
+const MM00Presenter = ({
+  videoDatum,
+  fileChangeHandler,
+  imagePath,
+  videoDeleteHandler,
+  updateHandler,
+}) => {
   return (
     <Wrapper>
       <Wrapper hidden={`400px`} padding={`25px`} dr={`row`}>
@@ -99,12 +121,32 @@ const MM00Presenter = ({ videoDatum, fileChangeHandler, imagePath }) => {
                 videoDatum.map((data, idx) => {
                   return (
                     <Fade bottom delay={idx * 60} key={idx}>
-                      <ImageBox
+                      <RelWrapper
                         width={`320px`}
                         height={`180px`}
                         margin={`5px`}
-                        bgImg={data.thumbnailPath}
-                      />
+                      >
+                        <AbImageBox
+                          width={`320px`}
+                          height={`180px`}
+                          bgImg={data.thumbnailPath}
+                        />
+                        <AbWrapper width={`60px`} height={`20px`} dr={`row`}>
+                          <CommonBtn
+                            isUpdate={true}
+                            width={`25px`}
+                            height={`10px`}
+                            onClick={() => updateHandler(data._id)}
+                          ></CommonBtn>
+
+                          <CommonBtn
+                            isDelete={true}
+                            width={`25px`}
+                            height={`10px`}
+                            onClick={() => videoDeleteHandler(data._id)}
+                          ></CommonBtn>
+                        </AbWrapper>
+                      </RelWrapper>
                     </Fade>
                   );
                 })
