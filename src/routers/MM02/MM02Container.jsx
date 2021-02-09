@@ -26,8 +26,10 @@ const MM02Container = ({ history }) => {
   ///////////// USE EFFECT  /////////////////
   const fileChangeHandler = async (e) => {
     console.log(e.target.files[0]);
+
     const originFile = e.target.files[0];
     const originFileName = e.target.files[0].name;
+
     console.log(originFile);
     console.log(originFileName);
 
