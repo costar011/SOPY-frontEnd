@@ -21,15 +21,14 @@ const MM02Container = ({ history }) => {
   ////////////// USE QUERY  /////////////////
 
   //////////// USE MUTATION  ////////////////
+
   const [registerVideoMutation] = useMutation(REGIST_VIDEO);
 
   ///////////// USE EFFECT  /////////////////
   const fileChangeHandler = async (e) => {
     console.log(e.target.files[0]);
-
     const originFile = e.target.files[0];
     const originFileName = e.target.files[0].name;
-
     console.log(originFile);
     console.log(originFileName);
 
@@ -71,10 +70,10 @@ const MM02Container = ({ history }) => {
     });
 
     if (data.registerVideo) {
-      alert("upload");
+      alert("Upload Success");
       history.push("/");
     } else {
-      alert("upload Fail");
+      alert("Upload Fail");
     }
   };
 

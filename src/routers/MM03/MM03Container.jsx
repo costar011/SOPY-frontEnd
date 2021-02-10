@@ -1,28 +1,29 @@
 import React, { useState } from "react";
-import { useQuery, useMutation } from "react-apollo-hooks";
-import useInput from "../../Hooks/useInput";
 import MM03Presenter from "./MM03Presenter";
 import { GET_VIDEO_ONE, UPDATE_VIDEO_ONE } from "./MM03Queries";
+import { useQuery, useMutation } from "react-apollo-hooks";
+import useInput from "../../Hooks/useInput";
+import storageRef from "../../firebase";
 
 const MM03Container = ({ match, history }) => {
   //////////// VARIABLE  ////////////////////
+
+  const [imagePath, setImagePath] = useState(``);
+
   const videoId = match.params.id;
 
-  console.log(videoId);
-
   //////////// USE STATE  ///////////////////
+
   const editThumbnail = useInput(``);
   const editTitle = useInput(``);
   const editDesc = useInput(``);
 
   const [dataFlag, setDataFlag] = useState(true);
-  const [imagePath] = useState(``);
 
   //////////// USE REF  /////////////////////
-
   //////////// USE CONTEXT  /////////////////
-
   ////////////// USE QUERY  /////////////////
+
   const { data: vData, loading: vLoading, refetch: vRefetch } = useQuery(
     GET_VIDEO_ONE,
     {
@@ -33,6 +34,8 @@ const MM03Container = ({ match, history }) => {
   );
 
   if (!vLoading) {
+    /* 로딩이 끝날을 때 실행 */
+
     if (dataFlag) {
       editThumbnail.setValue(vData.getVideoOne.thumbnailPath);
       editTitle.setValue(vData.getVideoOne.title);
@@ -43,15 +46,15 @@ const MM03Container = ({ match, history }) => {
   }
 
   //////////// USE MUTATION  ////////////////
+
   const [updateVideoMutation] = useMutation(UPDATE_VIDEO_ONE);
 
   ///////////// USE EFFECT  /////////////////
+
   const fileChangeHandler = async (e) => {
     console.log(e.target.files[0]);
-
     const originFile = e.target.files[0];
     const originFileName = e.target.files[0].name;
-
     console.log(originFile);
     console.log(originFileName);
 
@@ -83,7 +86,7 @@ const MM03Container = ({ match, history }) => {
     }
   };
 
-  const updateHandler = async () => {
+  const updateHandler = async (id) => {
     const { data } = await updateVideoMutation({
       variables: {
         id: videoId,
@@ -94,10 +97,11 @@ const MM03Container = ({ match, history }) => {
     });
 
     if (data.updateVideoOne) {
-      alert("update");
+      alert("upDate Success");
+
       history.push("/");
     } else {
-      alert("update Fail");
+      alert("upDate Fail");
     }
   };
 
