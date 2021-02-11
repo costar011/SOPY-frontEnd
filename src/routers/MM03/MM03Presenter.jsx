@@ -132,6 +132,7 @@ const MM03Presenter = ({
   editTitle,
   editDesc,
   updateHandler,
+  fileChangeHandler,
 }) => {
   return (
     <Wrapper>
@@ -147,7 +148,12 @@ const MM03Presenter = ({
           <FileLabel htmlFor="file-js">
             <Image src={editThumbnail.value} />
           </FileLabel>
-          <FileInput type="file" id="file-js" accept=".png, .jpg, .jpeg" />
+          <FileInput
+            type="file"
+            id="file-js"
+            accept=".png, .jpg, .jpeg"
+            onChange={fileChangeHandler}
+          />
         </LeftWrapper>
 
         <RightWrapper>

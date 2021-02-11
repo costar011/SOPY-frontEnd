@@ -97,21 +97,19 @@ const MM03Container = ({ match, history }) => {
     });
 
     if (data.updateVideoOne) {
-      alert("upDate Success");
-
+      alert("Update Success");
       history.push("/");
     } else {
-      alert("upDate Fail");
+      alert("Update Fail");
     }
   };
 
   return (
     <MM03Presenter
+      fileChangeHandler={fileChangeHandler}
       editThumbnail={editThumbnail}
       editTitle={editTitle}
       editDesc={editDesc}
-      imagePath={imagePath}
-      fileChangeHandler={fileChangeHandler}
       updateHandler={updateHandler}
     />
   );
